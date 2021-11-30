@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct LoveInASnapView: View {
-    @State private var extractedText: String = ""
+    @State private var extractedText: String = "Extracted text here..."
+    @State private var isLoading = false
+    
+    @State private var showChooseImageSheet = false
+    
+    @State private var showingImagePicker = false
+    @State private var showingImagePickerSourceType = ImagePicker.SourceType.photoLibrary
+    @State private var inputImage: UIImage?
     
     var body: some View {
         ZStack() {
@@ -16,32 +23,76 @@ struct LoveInASnapView: View {
                 .ignoresSafeArea()
             VStack() {
                 Text("Snap/upload a clear picture of your poem then edit below. Tap outside of the text box once your sweet nothings are complete.")
-                    .font(AppConstants.font1(withSize: 22))
+                    .font(AppConstants.font1(withSize: 16))
                     .fontWeight(.semibold)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
-                    .padding(.top, 50)
-                    .padding([.leading, .bottom, .trailing], 20)
-                ScrollView {
-                    Text(extractedText)
-                        .font(AppConstants.font2(withSize: 16))
-                        //                        .textSelection(.enabled)
-                        .padding()
+                    .padding(.vertical, 20)
+                ZStack(alignment: .center) {
+                    Color.white
+                    ScrollView {
+                        Text(extractedText)
+                            .font(AppConstants.font2(withSize: 16))
+                            //                        .textSelection(.enabled)
+                            .padding()
+                    }
+                    ActivityIndicator(isAnimating: $isLoading, style: .large)
                 }
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: 300, maxHeight: 400, alignment: .topLeading)
-                .background(Color.white)
-                .padding(.horizontal, 25.0)
                 
                 Button("Snap/Upload Image") {
-                    
+                    showChooseImageSheet = true
                 }
+                .actionSheet(isPresented: $showChooseImageSheet) { actionSheetBody }
                 .font(AppConstants.font1(withSize: 22))
                 .foregroundColor(Color(rgb: 0x94BEFF))
+                .frame(maxWidth: .infinity, maxHeight: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 Spacer()
             }
+            .padding(.horizontal, 25)
         }
         .background(Color.red)
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .onAppear() {
+            extractedText = String()
+        }
+        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: self.$inputImage, sourceType: showingImagePickerSourceType)
+        }
+    }
+    
+    var actionSheetBody: ActionSheet {
+        var buttons = [ActionSheet.Button]()
+        
+        
+        if ImagePicker.isSourceTypeAvailable(.camera) {
+            let cameraButton = ActionSheet.Button.default(Text("Take Photo")) {
+                showingImagePickerSourceType = .camera
+                showChooseImageSheet = false
+                showingImagePicker = true
+            }
+            buttons.append(cameraButton)
+        }
+        
+        let libraryButton = ActionSheet.Button.default(Text("Choose Existing")) {
+            showingImagePickerSourceType = .photoLibrary
+            showChooseImageSheet = false
+            showingImagePicker = true
+        }
+        buttons.append(libraryButton)
+        
+        let cancelButton = ActionSheet.Button.cancel(Text("Cancel")) {
+            showChooseImageSheet = false
+        }
+        buttons.append(cancelButton)
+        
+        return ActionSheet(title: Text("Snap/Upload Image"), message: nil, buttons: buttons)
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else {
+            return
+        }
     }
     
     struct AppConstants {
@@ -50,6 +101,19 @@ struct LoveInASnapView: View {
         }
         static func font2(withSize size: CGFloat) -> Font {
             Font.custom("Noteworthy", size: size)
+        }
+    }
+    
+    struct SwiftUIView: View {
+        @State private var showAlert = false;
+        
+        var body: some View {
+            Button(action: { self.showAlert = true }) {
+                Text("Show alert")
+            }.alert(
+                isPresented: $showAlert,
+                content: { Alert(title: Text("Hello world")) }
+            )
         }
     }
 }

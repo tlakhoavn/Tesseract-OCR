@@ -14,6 +14,8 @@
 		A99DA6182753B860009B00B0 /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99DA6172753B860009B00B0 /* UIFont + Extension.swift */; };
 		A9C909D327565084008BF66A /* Bradley Hand Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9C909D227565084008BF66A /* Bradley Hand Bold.ttf */; };
 		A9C909D9275652D1008BF66A /* Noteworthy.ttc in Resources */ = {isa = PBXBuildFile; fileRef = A9C909D8275652D1008BF66A /* Noteworthy.ttc */; };
+		A9C909DC27565A8D008BF66A /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C909DB27565A8D008BF66A /* ActivityIndicator.swift */; };
+		A9C909E0275666A2008BF66A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C909DF275666A2008BF66A /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A99DA6172753B860009B00B0 /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		A9C909D227565084008BF66A /* Bradley Hand Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bradley Hand Bold.ttf"; sourceTree = "<group>"; };
 		A9C909D8275652D1008BF66A /* Noteworthy.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Noteworthy.ttc; sourceTree = "<group>"; };
+		A9C909DB27565A8D008BF66A /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		A9C909DF275666A2008BF66A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,11 @@
 			isa = PBXGroup;
 			children = (
 				A99DA60627538EF8009B00B0 /* LoveInASnapApp.swift */,
-				A99DA6172753B860009B00B0 /* UIFont + Extension.swift */,
 				A99DA60827538EF8009B00B0 /* LoveInASnapView.swift */,
+				A99DA6172753B860009B00B0 /* UIFont + Extension.swift */,
 				A99DA60A27538F04009B00B0 /* Assets.xcassets */,
 				A99DA60F27538F04009B00B0 /* Info.plist */,
+				A9C909DE2756666D008BF66A /* UIKitRepresentables */,
 				A9C909D52756508F008BF66A /* Fonts */,
 				A99DA60C27538F04009B00B0 /* Preview Content */,
 			);
@@ -84,6 +89,15 @@
 				A9C909D8275652D1008BF66A /* Noteworthy.ttc */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A9C909DE2756666D008BF66A /* UIKitRepresentables */ = {
+			isa = PBXGroup;
+			children = (
+				A9C909DB27565A8D008BF66A /* ActivityIndicator.swift */,
+				A9C909DF275666A2008BF66A /* ImagePicker.swift */,
+			);
+			path = UIKitRepresentables;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,7 +171,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9C909DC27565A8D008BF66A /* ActivityIndicator.swift in Sources */,
 				A99DA6182753B860009B00B0 /* UIFont + Extension.swift in Sources */,
+				A9C909E0275666A2008BF66A /* ImagePicker.swift in Sources */,
 				A99DA60927538EF8009B00B0 /* LoveInASnapView.swift in Sources */,
 				A99DA60727538EF8009B00B0 /* LoveInASnapApp.swift in Sources */,
 			);
