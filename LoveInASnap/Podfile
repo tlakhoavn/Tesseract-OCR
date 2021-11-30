@@ -7,5 +7,6 @@ target 'LoveInASnap' do
 
   # Pods for LoveInASnap
 	pod 'TesseractOCRiOS'
+  pod 'GPUImage'
 
 end
