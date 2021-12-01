@@ -15,15 +15,21 @@ class LoveInASnapViewModel: ObservableObject {
     
     // MARK: - Intent(s)
     
-    func recognizeImage(_ image: UIImage) {
-        if let tesseract = G8Tesseract(language: "eng+fra") {
-            tesseract.engineMode = .tesseractCubeCombined
-            tesseract.pageSegmentationMode = .auto
-            let scaledImage = image.scaledImage(1000) ?? image
-            let preprocessedImage = scaledImage.preprocessedImage() ?? scaledImage
-            tesseract.image = preprocessedImage
-            tesseract.recognize()
-            recognizedText = tesseract.recognizedText ?? String()
+    func recognizeImage(_ image: UIImage, completion: @escaping () -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            if let tesseract = G8Tesseract(language: "eng+fra") {
+                tesseract.engineMode = .tesseractCubeCombined
+                tesseract.pageSegmentationMode = .auto
+                let scaledImage = image.scaledImage(1000) ?? image
+                let preprocessedImage = scaledImage.preprocessedImage() ?? scaledImage
+                tesseract.image = preprocessedImage
+                tesseract.recognize()
+                
+                DispatchQueue.main.async {
+                    self.recognizedText = tesseract.recognizedText ?? String()
+                    completion()
+                }
+            }
         }
     }
 }

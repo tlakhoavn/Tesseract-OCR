@@ -10,7 +10,7 @@ import SwiftUI
 struct LoveInASnapView: View {
     @ObservedObject var viewModel: LoveInASnapViewModel
     
-    @State private var isLoading = false
+    @State private var showLoading = false
     
     @State private var showChooseImageSheet = false
     
@@ -29,15 +29,15 @@ struct LoveInASnapView: View {
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 20)
-                ZStack(alignment: .center) {
+                ZStack(alignment: .leading) {
                     Color.white
                     ScrollView {
-                        Text(viewModel.recognizedText)
+                        Text(showLoading ? "" : viewModel.recognizedText)
                             .font(AppConstants.font2(withSize: 16))
+                            .frame(maxWidth: .infinity)
                             //                        .textSelection(.enabled)
                             .padding()
                     }
-                    ActivityIndicator(isAnimating: $isLoading, style: .large)
                 }
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: 300, maxHeight: 400, alignment: .topLeading)
                 
@@ -48,6 +48,7 @@ struct LoveInASnapView: View {
                 .font(AppConstants.font1(withSize: 22))
                 .foregroundColor(Color(rgb: 0x94BEFF))
                 .frame(maxWidth: .infinity, maxHeight: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .disabled(showLoading)
                 Spacer()
             }
             .padding(.horizontal, 25)
@@ -60,6 +61,7 @@ struct LoveInASnapView: View {
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
             ImagePicker(image: self.$inputImage, sourceType: showingImagePickerSourceType)
         }
+        .activityIndicatorify(showLoading: $showLoading)
     }
     
     var actionSheetBody: ActionSheet {
@@ -70,7 +72,7 @@ struct LoveInASnapView: View {
             let cameraButton = ActionSheet.Button.default(Text("Take Photo")) {
                 showingImagePickerSourceType = .camera
                 showChooseImageSheet = false
-                isLoading = true
+                showLoading = true
                 showingImagePicker = true
             }
             buttons.append(cameraButton)
@@ -79,7 +81,7 @@ struct LoveInASnapView: View {
         let libraryButton = ActionSheet.Button.default(Text("Choose Existing")) {
             showingImagePickerSourceType = .photoLibrary
             showChooseImageSheet = false
-            isLoading = true
+            showLoading = true
             showingImagePicker = true
         }
         buttons.append(libraryButton)
@@ -94,11 +96,12 @@ struct LoveInASnapView: View {
     
     func loadImage() {
         guard let image = inputImage else {
-            isLoading = false
+            showLoading = false
             return
         }
-        viewModel.recognizeImage(image)
-        isLoading = false
+        viewModel.recognizeImage(image) {
+            showLoading = false
+        }
     }
     
     struct AppConstants {
@@ -107,19 +110,6 @@ struct LoveInASnapView: View {
         }
         static func font2(withSize size: CGFloat) -> Font {
             Font.custom("Noteworthy", size: size)
-        }
-    }
-    
-    struct SwiftUIView: View {
-        @State private var showAlert = false;
-        
-        var body: some View {
-            Button(action: { self.showAlert = true }) {
-                Text("Show alert")
-            }.alert(
-                isPresented: $showAlert,
-                content: { Alert(title: Text("Hello world")) }
-            )
         }
     }
 }

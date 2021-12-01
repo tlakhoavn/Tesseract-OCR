@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5DA275AB9ADDD98F6661B5CC /* Pods_LoveInASnap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CAC67DD41D24ABB0B1E3A9 /* Pods_LoveInASnap.framework */; };
 		A90D564827568BB3005D5EF6 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = A90D564727568BB3005D5EF6 /* tessdata */; };
+		A90D565527577588005D5EF6 /* ActivityIndicatorify.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90D565427577588005D5EF6 /* ActivityIndicatorify.swift */; };
 		A99DA60727538EF8009B00B0 /* LoveInASnapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99DA60627538EF8009B00B0 /* LoveInASnapApp.swift */; };
 		A99DA60927538EF8009B00B0 /* LoveInASnapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99DA60827538EF8009B00B0 /* LoveInASnapView.swift */; };
 		A99DA60B27538F04009B00B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99DA60A27538F04009B00B0 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		78C5D6CD8C6A5EA919D3F264 /* Pods-LoveInASnap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoveInASnap.debug.xcconfig"; path = "Target Support Files/Pods-LoveInASnap/Pods-LoveInASnap.debug.xcconfig"; sourceTree = "<group>"; };
 		A7CAC67DD41D24ABB0B1E3A9 /* Pods_LoveInASnap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoveInASnap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90D564727568BB3005D5EF6 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = ../Resources/tessdata; sourceTree = "<group>"; };
+		A90D565427577588005D5EF6 /* ActivityIndicatorify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorify.swift; sourceTree = "<group>"; };
 		A99DA60327538EF8009B00B0 /* LoveInASnap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveInASnap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99DA60627538EF8009B00B0 /* LoveInASnapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveInASnapApp.swift; sourceTree = "<group>"; };
 		A99DA60827538EF8009B00B0 /* LoveInASnapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveInASnapView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C909DB27565A8D008BF66A /* ActivityIndicator.swift */,
+				A90D565427577588005D5EF6 /* ActivityIndicatorify.swift */,
 				A9C909DF275666A2008BF66A /* ImagePicker.swift */,
 			);
 			path = UIKitRepresentables;
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90D565527577588005D5EF6 /* ActivityIndicatorify.swift in Sources */,
 				A9C90A1527568159008BF66A /* LoveInASnapViewModel.swift in Sources */,
 				A9C909DC27565A8D008BF66A /* ActivityIndicator.swift in Sources */,
 				A99DA6182753B860009B00B0 /* UIFont + Extension.swift in Sources */,
